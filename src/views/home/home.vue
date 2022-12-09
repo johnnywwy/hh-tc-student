@@ -18,7 +18,7 @@
               <van-badge :content="item.badge">
 
                 <svg class="icon" aria-hidden="true">
-                  <use xlink:href="#icon-chengjichaxun-01"></use>
+                  <use :xlink:href="item.icon"></use>
                 </svg>
               </van-badge>
               <!-- <van-icon :name="item.icon" size="50" :badge="item.badge" /> -->
@@ -45,12 +45,12 @@ import { showToast } from 'vant';
 const count = ref(0);
 // <van-icon name="coupon-o" />
 const gridItem = ref([
-  { icon: 'sign', text: '年度成绩', hasDot: false },
-  { icon: 'manager-o', text: '毕业成绩', hasDot: false },
-  { icon: 'coupon-o', text: '体测预约', hasDot: false, badge: "2" },
-  { icon: 'search', text: '预约查询', hasDot: true },
-  { icon: 'comment-o', text: '体测助手', hasDot: false },
-  { icon: 'notes-o', text: '帮助反馈', hasDot: false },
+  { icon: '#icon-chengjichaxun-01', text: '年度成绩', hasDot: false },
+  { icon: '#icon-xuefenchaxun-01', text: '毕业成绩', hasDot: false },
+  { icon: '#icon-yixuankecheng-01', text: '体测预约', hasDot: false, badge: "2" },
+  { icon: '#icon-shiwuzhaoling-01', text: '预约查询', hasDot: true },
+  { icon: '#icon-shetuanhuodong-01-01-01-01-01', text: '体测助手', hasDot: false },
+  { icon: '#icon-dangshidati-01', text: '帮助反馈', hasDot: false },
 
 ])
 

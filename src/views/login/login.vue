@@ -1,0 +1,101 @@
+<template>
+  <div class="wrapper">
+    <van-nav-bar title="登录" class="page-nav-bar" />
+    <div class="login-wrapper">
+      <div class="title">汇海大学体侧报名系统</div>
+      <van-form @submit="onSubmit">
+        <van-cell-group inset>
+          <van-field left-icon="manager" v-model="user.username" name="姓名" label="姓名" placeholder="请输入姓名"
+            :rules="[{ required: true, message: '请填写姓名' }]" />
+          <van-field left-icon="lock" v-model="user.studentID" name="学号" label="学号" placeholder="请输入学号"
+            :rules="[{ required: true, message: '请填写学号' }]" />
+          <van-field left-icon="lock" v-model="user.idCard" name="身份证" label="身份证" placeholder="请输入身份证"
+            :rules="[{ required: true, message: '请填写身份证' }]" />
+        </van-cell-group>
+        <div class="btn-wrapper">
+          <van-button round block type="primary" native-type="submit">
+            登录
+          </van-button>
+        </div>
+      </van-form>
+    </div>
+  </div>
+</template>
+
+<script setup lang='ts'>
+
+import router from "../../router";
+import { ref, reactive } from "vue";
+import { showFailToast, showLoadingToast, showSuccessToast, showToast } from 'vant';
+import { Toast } from "vant";
+
+// 登录模板
+const user = reactive({
+  username: "",
+  studentID: "",
+  idCard: "",
+});
+
+
+
+
+//登录事件
+const onSubmit = async (values: any) => {
+  showLoadingToast({
+    message: '加载中...',
+    forbidClick: true,
+  });
+  //   登录请求
+  //   const res = await login(values);
+  //   if (res.data.code === 0) {
+  //     store.commit('setUser',res.data.data)
+  //     console.log("登录成功");
+  //     // router.push("/index");
+  //     Toast.success("成功文案");
+  //   } else {
+  //     console.log("登录失败");
+  //     Toast.fail("失败文案");
+  //   }
+  console.log(values);
+  if (values) {
+    showSuccessToast('登录成功');
+    router.push("/home");
+  } else {
+    showFailToast('登录失败');
+  }
+};
+
+</script>
+
+<style lang='less' scoped>
+.wrapper {
+  min-height: 100vh;
+  background: #f2f2f6;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.van-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-wrapper {
+  margin: 16px;
+}
+</style>

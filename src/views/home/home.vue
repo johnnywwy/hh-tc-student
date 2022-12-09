@@ -1,8 +1,8 @@
 <template>
   <van-pull-refresh v-model="loading" @refresh="onRefresh">
-    <div class="h-screen flex flex-col bg-light-500 items-center">
+    <div class="wrapper">
       <!-- 个人信息卡片区域 -->
-      <div class="my-3 h-120px w-90 bg-light-50 rounded-lg">
+      <div class="card">
         <div>学号</div>
         <div>姓名</div>
         <div>学校</div>
@@ -11,7 +11,7 @@
       <!-- 提示区域 -->
       <van-notice-bar wrapable :scrollable="false" text="不会回头的东西有四件：说出口的话、离弦的箭、逝去的生活和失去的机会。" />
       <!-- 导航区域 -->
-      <div class="rounded-lg w-90 my-3">
+      <div class="navBar">
         <van-grid :column-num="2" class="rounded-md">
           <van-grid-item v-for="(item, index) in gridItem" :key="index" :text="item.text">
             <template #icon>
@@ -27,7 +27,7 @@
         </van-grid>
       </div>
       <!-- 底部按钮 -->
-      <div class="w-90">
+      <div class="cancelBtn">
         <van-button type="primary" color="#1989fa" plain block>取消绑定</van-button>
       </div>
 
@@ -71,5 +71,19 @@ const onRefresh = () => {
   width: 50px;
   height: 50px;
 }
-.wrapper{}
+
+.wrapper {
+  @apply  flex flex-col bg-light-500 items-center;
+  height: calc(100vh - 46px);
+
+  .card {
+    @apply my-3 h-120px w-90 bg-light-50 rounded-lg;
+  }
+  .navBar{
+    @apply w-90 my-3;
+  }
+  .cancelBtn{
+    @apply w-90;
+  }
+}
 </style>

@@ -1,35 +1,75 @@
 <template>
-  <div>
-    <van-nav-bar title="主页" />
-    <div style="border:1px solid red">
-      <van-pull-refresh v-model="loading" @refresh="onRefresh">
-      <p>刷新次数: {{ count }}</p>
-      <!-- <div>{{ router }}</div> -->
-    </van-pull-refresh>
+  <van-pull-refresh v-model="loading" @refresh="onRefresh">
+    <div class="h-screen flex flex-col bg-light-500 items-center">
+      <!-- 个人信息卡片区域 -->
+      <div class="my-3 h-120px w-90 bg-light-50 rounded-lg">
+        <div>学号</div>
+        <div>姓名</div>
+        <div>学校</div>
+        <div>班级</div>
+      </div>
+      <!-- 提示区域 -->
+      <van-notice-bar wrapable :scrollable="false" text="不会回头的东西有四件：说出口的话、离弦的箭、逝去的生活和失去的机会。" />
+      <!-- 导航区域 -->
+      <div class="rounded-lg w-90 my-3">
+        <van-grid :column-num="2" class="rounded-md">
+          <van-grid-item v-for="(item, index) in gridItem" :key="index" :text="item.text">
+            <template #icon>
+              <van-badge :content="item.badge">
+
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-chengjichaxun-01"></use>
+                </svg>
+              </van-badge>
+              <!-- <van-icon :name="item.icon" size="50" :badge="item.badge" /> -->
+            </template>
+          </van-grid-item>
+        </van-grid>
+      </div>
+      <!-- 底部按钮 -->
+      <div class="w-90">
+        <van-button type="primary" color="#1989fa" plain block>取消绑定</van-button>
+      </div>
+
+
     </div>
-    
-  </div>
+  </van-pull-refresh>
 </template>
 
 <script setup lang='ts'>
-// import router from "../../router";
 import router from '../../router';
-// import route from route
 import { NavBar } from 'vant';
 import { ref } from 'vue';
-// import { PullRefresh } from 'vant';
 import { showToast } from 'vant';
+
 const count = ref(0);
+// <van-icon name="coupon-o" />
+const gridItem = ref([
+  { icon: 'sign', text: '年度成绩', hasDot: false },
+  { icon: 'manager-o', text: '毕业成绩', hasDot: false },
+  { icon: 'coupon-o', text: '体测预约', hasDot: false, badge: "2" },
+  { icon: 'search', text: '预约查询', hasDot: true },
+  { icon: 'comment-o', text: '体测助手', hasDot: false },
+  { icon: 'notes-o', text: '帮助反馈', hasDot: false },
+
+])
+
+
+
 const loading = ref(false);
 const onRefresh = () => {
   setTimeout(() => {
     showToast('刷新成功');
     loading.value = false;
     count.value++;
-  }, 1000);
+  }, 500);
 };
 </script>
 
 <style lang='less' scoped>
-
+.icon {
+  width: 50px;
+  height: 50px;
+}
+.wrapper{}
 </style>

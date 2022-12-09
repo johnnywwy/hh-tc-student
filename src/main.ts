@@ -3,7 +3,7 @@ import { createApp } from 'vue'
 import Vue from 'vue';
 
 
-// import './style.css'
+import './style.css'
 import App from './App.vue'
 
 // 1. 引入组件样式

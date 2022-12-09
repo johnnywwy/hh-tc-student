@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <van-nav-bar title="登录" class="page-nav-bar" />
     <div class="login-wrapper">
       <div class="title">汇海大学体侧报名系统</div>
       <van-form @submit="onSubmit">

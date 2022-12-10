@@ -13,6 +13,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/views/composables/util.ts", "src/views/composables/util.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/composables/util.ts", "src/composables/util.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

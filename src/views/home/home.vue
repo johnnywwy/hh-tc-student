@@ -65,7 +65,9 @@ const student = ref([{
   schoolName: '汇海演示大学',
   className: '大数据21-1'
 }])
-// <van-icon name="coupon-o" />
+
+
+// 宫格图标
 const gridItem = ref([
   { icon: '#icon-chengjichaxun-01', text: '成绩查询', hasDot: false, url: '/annualScore' },
   { icon: '#icon-xuefenchaxun-01', text: '毕业成绩', hasDot: false, url: '' },

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { showFailToast } from 'vant';
-import { getToken } from "./views/composables/util";
+import { getToken } from "./composables/auth";
 
 const service = axios.create({
   baseURL: "/api",
@@ -8,7 +8,7 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use(
-  function (config) {
+  function (config:any) {
     // 自动往 header 头 添加token
     const token = getToken();
     if (token) {

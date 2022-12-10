@@ -23,11 +23,16 @@
 
 <script setup lang='ts'>
 
-import router from "../../router";
+// import router from "../../router";
 import { ref, reactive } from "vue";
 import { showFailToast, showLoadingToast, showSuccessToast, showToast } from 'vant';
 import { Toast } from "vant";
+import { useRouter } from "vue-router";
+import { setToken } from "../../composables/auth";
+import { useStore } from "vuex";
 
+const router = useRouter();
+const store = useStore();
 // 登录模板
 const user = reactive({
   username: "",
@@ -35,7 +40,11 @@ const user = reactive({
   idCard: "",
 });
 
-
+// 登录用的假数据
+const formState = reactive({
+  username: "admin",
+  password: "admin",
+});
 
 
 //登录事件
@@ -44,6 +53,18 @@ const onSubmit = async (values: any) => {
     message: '加载中...',
     forbidClick: true,
   });
+
+  store
+    .dispatch("userlogin", formState)
+    .then((res) => {
+      console.log(res);
+      showSuccessToast('登录成功')
+      // toast("登录成功！");
+      router.push("/home");
+    })
+  // .finally(() => {
+  //   loading.value = false;
+  // });
   //   登录请求
   //   const res = await login(values);
   //   if (res.data.code === 0) {
@@ -56,12 +77,12 @@ const onSubmit = async (values: any) => {
   //     Toast.fail("失败文案");
   //   }
   console.log(values);
-  if (values) {
-    showSuccessToast('登录成功');
-    router.push("/home");
-  } else {
-    showFailToast('登录失败');
-  }
+  // if (values) {
+  //   showSuccessToast('登录成功');
+  //   router.push("/home");
+  // } else {
+  //   showFailToast('登录失败');
+  // }
 };
 
 </script>
@@ -85,7 +106,7 @@ const onSubmit = async (values: any) => {
   font-size: 24px;
   display: flex;
   justify-content: center;
-  padding-bottom:10px; 
+  padding-bottom: 10px;
 }
 
 .van-form {

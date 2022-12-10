@@ -8,7 +8,7 @@ export function getToken() {
 }
 
 // 设置token
-export function setToken(token) {
+export function setToken(token:string) {
   return cookies.set(TokenKey, token);
 }
 

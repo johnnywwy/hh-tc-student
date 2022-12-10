@@ -2,26 +2,39 @@
   <van-pull-refresh v-model="loading" @refresh="onRefresh">
     <div class="wrapper">
       <!-- 个人信息卡片区域 -->
-      <div class="card">
-        <div>学号</div>
-        <div>姓名</div>
-        <div>学校</div>
-        <div>班级</div>
+      <div class="card" v-for="(item, index) in student" :key="index">
+        <!-- 左边 -->
+        <div class="left">
+          <div>
+            <p>学号 : {{ item.studentNum }}</p>
+          </div>
+          <div>姓名 : {{ item.studentName }}</div>
+          <div>学校 : {{ item.schoolName }}</div>
+          <div>班级 : {{ item.className }}</div>
+        </div>
+        <!-- 右边 -->
+        <div class="right">
+          <div class="iconWrapper">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-erweima1"></use>
+            </svg>
+            <!-- <div>准考证</div> -->
+          </div>
+        </div>
       </div>
       <!-- 提示区域 -->
-      <van-notice-bar wrapable :scrollable="false" text="不会回头的东西有四件：说出口的话、离弦的箭、逝去的生活和失去的机会。" />
+      <van-notice-bar wrapable :scrollable="false" left-icon="volume-o"
+        text="若对成绩、预约结果等情况存在疑问，请联系学校体测中心咨询，电话400-820-8820，谢谢!" />
       <!-- 导航区域 -->
       <div class="navBar">
-        <van-grid :column-num="2" class="rounded-md">
-          <van-grid-item v-for="(item, index) in gridItem" :key="index" :text="item.text">
+        <van-grid :column-num="2" class="rounded-md" clickable>
+          <van-grid-item  v-for="(item, index) in gridItem" :key="index" :text="item.text">
             <template #icon>
               <van-badge :content="item.badge">
-
                 <svg class="icon" aria-hidden="true">
                   <use :xlink:href="item.icon"></use>
                 </svg>
               </van-badge>
-              <!-- <van-icon :name="item.icon" size="50" :badge="item.badge" /> -->
             </template>
           </van-grid-item>
         </van-grid>
@@ -43,6 +56,13 @@ import { ref } from 'vue';
 import { showToast } from 'vant';
 
 const count = ref(0);
+
+const student = ref([{
+  studentNum: '20221210',
+  studentName: '小红红',
+  schoolName: '汇海演示大学',
+  className: '大数据21-1'
+}])
 // <van-icon name="coupon-o" />
 const gridItem = ref([
   { icon: '#icon-chengjichaxun-01', text: '年度成绩', hasDot: false },
@@ -57,6 +77,7 @@ const gridItem = ref([
 
 
 const loading = ref(false);
+
 const onRefresh = () => {
   setTimeout(() => {
     showToast('刷新成功');
@@ -67,23 +88,58 @@ const onRefresh = () => {
 </script>
 
 <style lang='less' scoped>
-.icon {
-  width: 50px;
-  height: 50px;
-}
-
 .wrapper {
-  @apply  flex flex-col bg-light-500 items-center;
-  height: calc(100vh - 46px);
+  @apply w-screen flex flex-col items-center font-medium;
+  min-height: calc(100vh - 46px);
+  display: flex;
+  padding: 12px 12px;
+  flex-direction: column;
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  // background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
   .card {
-    @apply my-3 h-120px w-90 bg-light-50 rounded-lg;
+    @apply flex justify-between bg-light-50 rounded-lg shadow-lg;
+    font-size: 16px;
+    width: 350px;
+    height: 148px;
+    margin-bottom: 10px;
+    padding: 15px;
+
+    .left {
+      @apply flex justify-between flex-col;
+      width: 70%;
+    }
+
+    .right {
+      @apply flex justify-end items-center;
+      width: 30%;
+
+      .iconWrapper {
+        @apply flex items-center justify-center flex-col border border-dark-100;
+        .icon {
+          margin: 2px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
   }
-  .navBar{
-    @apply w-90 my-3;
+
+  .navBar {
+    @apply shadow-lg;
+    margin-top: 10px;
+    border-radius: 0.5rem;
+
+    .icon {
+      width: 50px;
+      height: 50px;
+    }
   }
-  .cancelBtn{
-    @apply w-90;
+
+  .cancelBtn {
+    width: 100%;
+    margin-top: 10px;
   }
 }
 </style>

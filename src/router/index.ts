@@ -2,20 +2,20 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 // 路由规则
 const routes = [
   {
+    path: '/login',
+    meta: { title: '登录' },
+    component: () => import('../views/login/login.vue'),
+  },
+  {
+    path: '/404',
+    meta: { title: '404' },
+    component: () => import('../views/404/404.vue'),
+  },
+  {
     path: '/',
     name: 'layout',
     component: () => import('../views/layout/layout.vue'),
-    children:[
-      {
-        path: 'login',
-        meta: { title: '登录' },
-        component: () => import('../views/login/login.vue'),
-      },
-      {
-        path: '404',
-        meta: { title: '404' },
-        component: () => import('../views/404/404.vue'),
-      },
+    children:[  
       {
         path: 'home',
         meta: { title: '主页' },

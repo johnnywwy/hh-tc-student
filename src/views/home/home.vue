@@ -1,4 +1,5 @@
 <template>
+  <van-nav-bar :title="$route.meta.title" />
   <van-pull-refresh v-model="loading" @refresh="onRefresh">
     <div class="wrapper">
       <!-- 个人信息卡片区域 -->
@@ -24,17 +25,20 @@
       </div>
       <!-- 提示区域 -->
       <van-notice-bar wrapable :scrollable="false" left-icon="volume-o"
-        text="若对成绩、预约结果等情况存在疑问，请联系学校体测中心咨询，电话400-820-8820，谢谢!" />
+        text="若对成绩、预约结果等情况存在疑问，请联系学校体测中心，电话400-820-8820，谢谢!" />
       <!-- 导航区域 -->
       <div class="navBar">
         <van-grid :column-num="2" class="rounded-md" clickable>
-          <van-grid-item  v-for="(item, index) in gridItem" :key="index" :text="item.text">
+          <van-grid-item v-for="(item, index) in gridItem" :key="index" :to="item.url">
             <template #icon>
               <van-badge :content="item.badge">
                 <svg class="icon" aria-hidden="true">
                   <use :xlink:href="item.icon"></use>
                 </svg>
               </van-badge>
+            </template>
+            <template #text>
+              <span>{{item.text}}</span>
             </template>
           </van-grid-item>
         </van-grid>
@@ -43,8 +47,6 @@
       <div class="cancelBtn">
         <van-button type="primary" color="#1989fa" plain block>取消绑定</van-button>
       </div>
-
-
     </div>
   </van-pull-refresh>
 </template>
@@ -65,19 +67,20 @@ const student = ref([{
 }])
 // <van-icon name="coupon-o" />
 const gridItem = ref([
-  { icon: '#icon-chengjichaxun-01', text: '年度成绩', hasDot: false },
-  { icon: '#icon-xuefenchaxun-01', text: '毕业成绩', hasDot: false },
-  { icon: '#icon-yixuankecheng-01', text: '体测预约', hasDot: false, badge: "2" },
-  { icon: '#icon-shiwuzhaoling-01', text: '预约查询', hasDot: true },
-  { icon: '#icon-shetuanhuodong-01-01-01-01-01', text: '体测助手', hasDot: false },
-  { icon: '#icon-dangshidati-01', text: '帮助反馈', hasDot: false },
+  { icon: '#icon-chengjichaxun-01', text: '成绩查询', hasDot: false, url: '/annualScore' },
+  { icon: '#icon-xuefenchaxun-01', text: '毕业成绩', hasDot: false, url: '' },
+  { icon: '#icon-yixuankecheng-01', text: '体测预约', hasDot: false, badge: "2", url: '' },
+  { icon: '#icon-shiwuzhaoling-01', text: '预约查询', hasDot: true, url: '' },
+  { icon: '#icon-shetuanhuodong-01-01-01-01-01', text: '体测助手', hasDot: false, url: '' },
+  { icon: '#icon-dangshidati-01', text: '帮助反馈', hasDot: false, url: '' },
 
 ])
 
 
-
+// 加载中
 const loading = ref(false);
 
+// 下拉刷新
 const onRefresh = () => {
   setTimeout(() => {
     showToast('刷新成功');
@@ -85,6 +88,8 @@ const onRefresh = () => {
     count.value++;
   }, 500);
 };
+
+
 </script>
 
 <style lang='less' scoped>
@@ -115,7 +120,8 @@ const onRefresh = () => {
       width: 30%;
 
       .iconWrapper {
-        @apply flex items-center justify-center flex-col border border-dark-100;
+        @apply flex items-center justify-center flex-col  border border-dark-100;
+
         .icon {
           margin: 2px;
           width: 24px;

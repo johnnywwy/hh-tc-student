@@ -85,7 +85,7 @@ const onSubmit = async (values: any) => {
   font-size: 24px;
   display: flex;
   justify-content: center;
-  padding: 30px 0;
+  padding-bottom:10px; 
 }
 
 .van-form {

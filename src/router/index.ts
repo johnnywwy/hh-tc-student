@@ -30,6 +30,31 @@ const routes = [
         meta: { title: '成绩查询' },
         component: () => import('../views/annualScore/annualScore.vue'),
       },
+      {
+        path: 'physicalApply',
+        meta: { title: '体测预约' },
+        component: () => import('../views/physicalApply/physicalApply.vue'),
+      },
+      {
+        path: 'graduateScore',
+        meta: { title: '毕业成绩' },
+        component: () => import('../views/graduateScore/graduateScore.vue'),
+      },
+      {
+        path: 'searchBooking',
+        meta: { title: '预约查询' },
+        component: () => import('../views/searchBooking/searchBooking.vue'),
+      },
+      {
+        path: 'physicaHelper',
+        meta: { title: '体测助手' },
+        component: () => import('../views/physicaHelper/physicaHelper.vue'),
+      },
+      {
+        path: 'help',
+        meta: { title: '预约查询' },
+        component: () => import('../views/help/help.vue'),
+      },
     ]
   },
   

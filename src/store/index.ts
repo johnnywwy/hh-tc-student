@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { login, getinfo } from "../api/manager";
+import { getSysList,getScore } from '../api/score'
 import { setToken, removeToken } from "../composables/auth";
 // 创建一个新的 store 实例
 const store = createStore({
@@ -21,6 +22,7 @@ const store = createStore({
       return new Promise((resolve, reject) => {
         login(username, password)
           .then((res:any) => {
+            console.log(res);
             setToken(res.token);
             resolve(res);
           })
@@ -51,6 +53,30 @@ const store = createStore({
       // 清除用户状态
       commit("SET_USERINFO", {});
 
+    },
+
+    getPhysicalList({commit}){
+      return new Promise((resolve, reject) => {
+        getSysList()
+          .then((res) => {
+            console.log(res);
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+    getScore({commit}){
+      return new Promise((resolve, reject) => {
+        getScore()
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
     }
   },
 });

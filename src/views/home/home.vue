@@ -70,11 +70,11 @@ const student = ref([{
 // 宫格图标
 const gridItem = ref([
   { icon: '#icon-chengjichaxun-01', text: '成绩查询', hasDot: false, url: '/annualScore' },
-  { icon: '#icon-xuefenchaxun-01', text: '毕业成绩', hasDot: false, url: '' },
-  { icon: '#icon-yixuankecheng-01', text: '体测预约', hasDot: false, badge: "2", url: '' },
-  { icon: '#icon-shiwuzhaoling-01', text: '预约查询', hasDot: true, url: '' },
-  { icon: '#icon-shetuanhuodong-01-01-01-01-01', text: '体测助手', hasDot: false, url: '' },
-  { icon: '#icon-dangshidati-01', text: '帮助反馈', hasDot: false, url: '' },
+  { icon: '#icon-xuefenchaxun-01', text: '毕业成绩', hasDot: false, url: '/graduateScore' },
+  { icon: '#icon-yixuankecheng-01', text: '体测预约', hasDot: false, badge: "2", url: '/physicalApply' },
+  { icon: '#icon-shiwuzhaoling-01', text: '预约查询', hasDot: true, url: '/searchBooking' },
+  { icon: '#icon-shetuanhuodong-01-01-01-01-01', text: '体测助手', hasDot: false, url: '/physicaHelper' },
+  { icon: '#icon-dangshidati-01', text: '帮助反馈', hasDot: false, url: '/help' },
 
 ])
 

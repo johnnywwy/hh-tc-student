@@ -18,9 +18,9 @@ const store = createStore({
   },
   actions: {
     // 登录
-    userlogin({ commit }, { username, password }) {
+    userlogin({ commit }, { username, studentID,idCard }) {
       return new Promise((resolve, reject) => {
-        login(username, password)
+        login(username, studentID, idCard)
           .then((res:any) => {
             console.log(res);
             setToken(res.token);
@@ -67,9 +67,10 @@ const store = createStore({
           });
       });
     },
-    getScore({commit}){
+    
+    getScore({commit},{ studentID, platformID }){
       return new Promise((resolve, reject) => {
-        getScore()
+        getScore(studentID, platformID)
           .then((res) => {
             resolve(res);
           })

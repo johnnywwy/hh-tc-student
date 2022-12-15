@@ -1,5 +1,5 @@
 import axios from "axios";
-import { showFailToast } from 'vant';
+import { showConfirmDialog, showFailToast } from 'vant';
 import { getToken } from "./composables/auth";
 
 const service = axios.create({
@@ -11,6 +11,8 @@ service.interceptors.request.use(
   function (config:any) {
     // 自动往 header 头 添加token
     const token = getToken();
+    console.log(config);
+    
     if (token) {
       config.headers["token"] = token;
     }

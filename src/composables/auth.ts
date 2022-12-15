@@ -12,6 +12,8 @@ export function setToken(token:string) {
   return cookies.set(TokenKey, token);
 }
 
+
+
 // 删除token
 export function removeToken() {
   return cookies.remove(TokenKey);

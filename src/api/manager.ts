@@ -1,10 +1,11 @@
 import axios from "../../src/axios";
 
 // 登录
-export function login(username :string, password:string) {
+export function login(username :string, studentID:string,idCard:string) {
   return axios.post("/login", {
     username,
-    password,
+    studentID,
+    idCard
   });
 }
 

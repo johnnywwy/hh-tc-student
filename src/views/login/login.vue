@@ -35,15 +35,15 @@ const router = useRouter();
 const store = useStore();
 // 登录模板
 const user = reactive({
-  username: "",
-  studentID: "",
-  idCard: "",
+  username: "admin",
+  studentID: "admin",
+  idCard: "123456",
 });
 
 // 登录用的假数据
 const formState = reactive({
   username: "admin",
-  password: "admin",
+  password: "123456",
 });
 
 
@@ -55,12 +55,21 @@ const onSubmit = async (values: any) => {
   });
 
   store
-    .dispatch("userlogin", formState)
+    .dispatch("userlogin", user)
     .then((res) => {
       console.log(res);
-      showSuccessToast('登录成功')
+      if (res.verifySuccess) {
+        showSuccessToast('登录成功')
+        router.push("/home");
+        store.commit("SET_USERINFO", res.userInfo)
+        console.log(store.state);
+        
+        return
+      }
+
       // toast("登录成功！");
-      router.push("/home");
+      showFailToast('登录失败')
+
     })
   // .finally(() => {
   //   loading.value = false;

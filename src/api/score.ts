@@ -14,6 +14,9 @@ export function getSysList() {
 }
 
 // 获取系统成绩数据
-export function getScore() {
-  return axios.get("/getSorce");
+export function getScore(studentID:string,platformID:string) {
+  return axios.post("/getSorce",{
+    studentID,
+    platformID
+  });
 }

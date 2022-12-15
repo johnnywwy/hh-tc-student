@@ -7,7 +7,7 @@
         <!-- 左边 -->
         <div class="left">
           <div>
-            <p>学号 : {{ item.studentNum }}</p>
+            <p>学号 : {{ item.studentID }}</p>
           </div>
           <div>姓名 : {{ item.studentName }}</div>
           <div>学校 : {{ item.schoolName }}</div>
@@ -38,7 +38,7 @@
               </van-badge>
             </template>
             <template #text>
-              <span>{{item.text}}</span>
+              <span>{{ item.text }}</span>
             </template>
           </van-grid-item>
         </van-grid>
@@ -54,17 +54,30 @@
 <script setup lang='ts'>
 import router from '../../router';
 import { NavBar } from 'vant';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { showToast } from 'vant';
+import store from '../../store';
 
 const count = ref(0);
 
-const student = ref([{
-  studentNum: '20221210',
-  studentName: '小红红',
-  schoolName: '汇海演示大学',
-  className: '大数据21-1'
-}])
+// interface studentConfig {
+//   studentNum: ''
+//   studentName: '',
+//   schoolName: '',
+//   className: ''
+// }
+
+// const student = ref([{
+//   studentNum: '20221210',
+//   studentName: '小红红',
+//   schoolName: '汇海演示大学',
+//   className: '大数据21-1'
+// }])
+
+const student: { value: any } = computed(() => store.state.user)
+
+// console.log(student.value);
+
 
 
 // 宫格图标
@@ -122,7 +135,7 @@ const onRefresh = () => {
       width: 30%;
 
       .iconWrapper {
-        @apply flex items-center justify-center flex-col  border border-dark-100;
+        @apply flex items-center justify-center flex-col border border-dark-100;
 
         .icon {
           margin: 2px;

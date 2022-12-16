@@ -20,3 +20,8 @@ export function getScore(studentID:string,platformID:string) {
     platformID
   });
 }
+
+// 获取系统成绩数据
+export function getScoreReport() {
+  return axios.get("/report");
+}

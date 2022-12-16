@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import { login, getinfo } from "../api/manager";
-import { getSysList,getScore } from '../api/score'
+import { getSysList,getScore,getScoreReport } from '../api/score'
 import { setToken, removeToken } from "../composables/auth";
 // 创建一个新的 store 实例
 const store = createStore({
@@ -57,6 +57,7 @@ const store = createStore({
 
     },
 
+    // 获取计划列表
     getPhysicalList({commit}){
       return new Promise((resolve, reject) => {
         getSysList()
@@ -69,9 +70,24 @@ const store = createStore({
       });
     },
     
+    // 获取总分
     getScore({commit},{ studentID, platformID }){
       return new Promise((resolve, reject) => {
         getScore(studentID, platformID)
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+
+    // 获取详细成绩列表
+    getReport({commit}){
+      // getScoreReport
+      return new Promise((resolve, reject) => {
+        getScoreReport()
           .then((res) => {
             resolve(res);
           })

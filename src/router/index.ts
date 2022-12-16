@@ -31,6 +31,12 @@ const routes = [
         component: () => import('../views/annualScore/annualScore.vue'),
       },
       {
+        path: 'scoreReport',
+        name: 'scoreReport',
+        meta: { title: '成绩报告' },
+        component: () => import('../views/scoreReport/scoreReport.vue'),
+      },
+      {
         path: 'physicalApply',
         meta: { title: '体测预约' },
         component: () => import('../views/physicalApply/physicalApply.vue'),

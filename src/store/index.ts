@@ -7,13 +7,15 @@ const store = createStore({
   state() {
     return {
       // 用户信息
-      user: {},
+      user: JSON.parse(localStorage.getItem('USER_INFO') as any)||{},
     };
   },
   mutations: {
     // 记录用户信息
     SET_USERINFO(state, user) {
       state.user = user;
+      localStorage.setItem('USER_INFO',JSON.stringify(user))
+      // setToken('USER_INFO',JSON.stringify(user))
     },
   },
   actions: {
@@ -59,7 +61,6 @@ const store = createStore({
       return new Promise((resolve, reject) => {
         getSysList()
           .then((res) => {
-            console.log(res);
             resolve(res);
           })
           .catch((err) => {

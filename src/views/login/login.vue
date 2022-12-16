@@ -26,7 +26,6 @@
 // import router from "../../router";
 import { ref, reactive } from "vue";
 import { showFailToast, showLoadingToast, showSuccessToast, showToast } from 'vant';
-import { Toast } from "vant";
 import { useRouter } from "vue-router";
 import { setToken } from "../../composables/auth";
 import { useStore } from "vuex";

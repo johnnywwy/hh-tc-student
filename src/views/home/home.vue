@@ -28,7 +28,7 @@
         text="若对成绩、预约结果等情况存在疑问，请联系学校体测中心，电话400-820-8820，谢谢!" />
       <!-- 导航区域 -->
       <div class="navBar">
-        <van-grid :column-num="2" class="rounded-md" clickable>
+        <van-grid :column-num="2" clickable>
           <van-grid-item v-for="(item, index) in gridItem" :key="index" :to="item.url">
             <template #icon>
               <van-badge :content="item.badge">
@@ -98,7 +98,10 @@ const loading = ref(false);
 // 下拉刷新
 const onRefresh = () => {
   setTimeout(() => {
-    showToast('刷新成功');
+    showToast({
+      message: '自定义图标',
+      icon: 'like-o',
+    });
     loading.value = false;
     count.value++;
   }, 500);
@@ -150,7 +153,7 @@ const onRefresh = () => {
   .navBar {
     @apply shadow-lg;
     margin-top: 10px;
-    border-radius: 0.5rem;
+    // border-radius: 0.5rem;
 
     .icon {
       width: 50px;
@@ -162,5 +165,9 @@ const onRefresh = () => {
     width: 100%;
     margin-top: 10px;
   }
+}
+
+.van-grid-item__content {
+  // border-radius: 0.5rem;
 }
 </style>
